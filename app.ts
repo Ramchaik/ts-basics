@@ -1,26 +1,16 @@
-function combine(
-  n1: number | string,
-  n2: number | string,
-  resultConversion: "as-number" | "as-text"
-) {
-  let result;
-  if (
-    (typeof n1 === "number" && typeof n2 === "number") ||
-    resultConversion === "as-number"
-  ) {
-    result = +n1 + +n2;
-  } else {
-    result = n1.toString() + n2.toString();
-  }
-
-  return result;
+function add(n1: number, n2: number) {
+  return n1 + n2;
 }
 
-const combineAges = combine(30, 46, "as-number");
-console.log(combineAges);
+function printResult(n1: number): void {
+  console.log("Result: ", n1);
+}
 
-const combineAges2 = combine("30", "46", "as-number");
-console.log(combineAges);
+printResult(add(1, 2));
 
-const combineNames = combine("x", "y", "as-text");
-console.log(combineNames);
+let combineValues: (a: number, b: number) => number;
+combineValues = add;
+// combineValues = 5;
+// combineValues = printResult;
+
+console.log(combineValues(10, 3));
