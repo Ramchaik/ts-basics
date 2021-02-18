@@ -8,7 +8,7 @@
 //   hobbies: string[];
 //   role: [number, string];
 // } = {
-//   name: 'Maximilian',
+//   name: 'Max',
 //   age: 30,
 //   hobbies: ['Sports', 'Cooking'],
 //   role: [2, 'author']
@@ -25,7 +25,7 @@ enum Role {
 }
 
 const person = {
-  name: "Maximilian",
+  name: "Max",
   age: 30,
   hobbies: ["Sports", "Cooking"],
   role: Role.ADMIN,
