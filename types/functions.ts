@@ -1,4 +1,4 @@
-function add(n1: number, n2: number) {
+function sum(n1: number, n2: number) {
   return n1 + n2;
 }
 
@@ -6,10 +6,10 @@ function printResult(n1: number): void {
   console.log("Result: ", n1);
 }
 
-printResult(add(1, 2));
+printResult(sum(1, 2));
 
 let combineValues: (a: number, b: number) => number;
-combineValues = add;
+combineValues = sum;
 // combineValues = 5;
 // combineValues = printResult;
 
