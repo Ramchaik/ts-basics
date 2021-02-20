@@ -69,4 +69,5 @@
   }
   // "exclude": ["**/*.dev.ts", "node_modules"]
   // "include": ["src/**/*"]
+  // "files": ["x.dev.ts"]
 }
