@@ -1,6 +1,6 @@
 "use strict";
 function combine(n1, n2, resultConversion) {
-    var result;
+    let result;
     if ((typeof n1 === "number" && typeof n2 === "number") ||
         resultConversion === "as-number") {
         result = +n1 + +n2;
@@ -10,9 +10,10 @@ function combine(n1, n2, resultConversion) {
     }
     return result;
 }
-var combineAges = combine(30, 46, "as-number");
+const combineAges = combine(30, 46, "as-number");
 console.log(combineAges);
-var combineAges2 = combine("30", "46", "as-number");
+const combineAges2 = combine("30", "46", "as-number");
 console.log(combineAges);
-var combineNames = combine("x", "y", "as-text");
+const combineNames = combine("x", "y", "as-text");
 console.log(combineNames);
+//# sourceMappingURL=union-aliases.js.map
