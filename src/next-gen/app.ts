@@ -5,3 +5,15 @@ const printOutput1: (a: number | string) => void = (output) =>
 
 printOutput(add1(1, 2));
 printOutput(add1(2));
+
+const hobbies = ["Sports", "Cooking"];
+// const activeHobbies = ["Hiking", ...hobbies];
+
+const activeHobbies = ["Hiking"];
+activeHobbies.push(...hobbies);
+
+const personA = {
+  name: "John",
+  age: 21,
+};
+const copiedPersonA = { ...personA };
