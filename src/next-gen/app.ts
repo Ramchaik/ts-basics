@@ -17,3 +17,13 @@ const personA = {
   age: 21,
 };
 const copiedPersonA = { ...personA };
+
+const addAll = (...numbers: number[]) =>
+  numbers.reduce((acc, val) => acc + val, 0);
+
+const addedNumber = addAll(10, 2, 3, 1, 3, 1, 10);
+
+const addThreeValues = (...numbers: [number, number, number]) =>
+  numbers.reduce((acc, val) => acc + val, 0);
+
+const addedThreeNumber = addThreeValues(10, 2, 3);
