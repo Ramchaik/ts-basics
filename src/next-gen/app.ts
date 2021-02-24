@@ -27,3 +27,9 @@ const addThreeValues = (...numbers: [number, number, number]) =>
   numbers.reduce((acc, val) => acc + val, 0);
 
 const addedThreeNumber = addThreeValues(10, 2, 3);
+
+// const hobby1 = hobbies[0];
+// const hobby2 = hobbies[1];
+const [hobby1, hobby2, ...remainingHobbies] = hobbies;
+
+const { name: fistName, age } = personA;
