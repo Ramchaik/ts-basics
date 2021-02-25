@@ -5,7 +5,7 @@ class Department {
     this.name = name;
   }
 
-  describe() {
+  describe(this: Department) {
     console.log("Department: " + this.name);
   }
 }
@@ -15,5 +15,5 @@ console.log(tech);
 
 tech.describe();
 
-const techCopy = { describe: tech.describe };
+const techCopy = { name: "DUMMY", describe: tech.describe };
 techCopy.describe();
