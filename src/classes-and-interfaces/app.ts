@@ -1,6 +1,6 @@
 class Department {
   name: string;
-  employees: string[] = [];
+  private employees: string[] = [];
 
   constructor(name: string) {
     this.name = name;
@@ -27,8 +27,6 @@ tech.describe();
 
 tech.addEmployee("raju");
 tech.addEmployee("chacha");
-
-tech.employees[2] = "mukesh";
 
 tech.printEmployeeInfo();
 
