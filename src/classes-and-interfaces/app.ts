@@ -1,11 +1,16 @@
 class Department {
   // private readonly id: string;
   // public name: string;
+  static fiscalYear = 2021;
   protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {
     // this.name = name;
     // this.id = id;
+  }
+
+  static createEmployee(name: string) {
+    return { name };
   }
 
   describe(this: Department) {
@@ -18,6 +23,8 @@ class Department {
   }
 
   printEmployeeInfo() {
+    // * can only access static property/method using Class
+    console.log(Department.fiscalYear);
     console.log(this.employees.length);
     console.log(this.employees);
   }
@@ -93,6 +100,8 @@ accounting.mostRecentReport = "Year end Report";
 console.log(accounting.mostRecentReport);
 
 console.log(accounting);
+
+console.log(Department.createEmployee("Hello"), Department.fiscalYear);
 
 // const techCopy = { name: "DUMMY", describe: tech.describe };
 // techCopy.describe();
