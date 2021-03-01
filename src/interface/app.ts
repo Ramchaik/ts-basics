@@ -1,14 +1,14 @@
-interface Greetable {
+interface Named {
   readonly name: string;
-
-  greet(phrase: string): void;
 }
-
 interface X {
   age: number;
 }
+interface Greetable extends Named, X {
+  greet(phrase: string): void;
+}
 
-class PersonX implements Greetable, X {
+class PersonX implements Greetable {
   constructor(public name: string, public age: number) {}
 
   greet(phrase: string) {
