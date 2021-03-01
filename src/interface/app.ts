@@ -18,6 +18,6 @@ class PersonX implements Greetable, X {
 
 let p1: Greetable;
 p1 = new PersonX("John", 36);
-p1.name = "y";
+// p1.name = "y"; // error as property is readonly
 
 p1.greet("Waba laba dub dub");
