@@ -40,10 +40,23 @@ class ITDepartment extends Department {
 
 class AccountingDepartment extends Department {
   private lastReported: string;
+  private static instance: AccountingDepartment;
 
-  constructor(id: string, private reports: string[]) {
+  private constructor(id: string, private reports: string[]) {
     super(id, "Accounting");
     this.lastReported = reports[0]!;
+  }
+
+  static getInstance() {
+    if (AccountingDepartment.instance) {
+      // * `this` in static method refers to class itself,
+      // * so this.instance and AccountingDepartment.instance
+      // * refers to same property inside static methods
+      return this.instance;
+    }
+
+    this.instance = new AccountingDepartment("d2", []);
+    return this.instance;
   }
 
   describe() {
@@ -94,7 +107,8 @@ it.addEmployee("chacha");
 it.printEmployeeInfo();
 it.describe();
 
-const accounting = new AccountingDepartment("d2", []);
+const accounting = AccountingDepartment.getInstance();
+const accounting2 = AccountingDepartment.getInstance();
 
 accounting.addEmployee("x");
 accounting.addEmployee("Vaibhav");
@@ -109,6 +123,7 @@ console.log(accounting.mostRecentReport);
 accounting.describe();
 
 console.log(accounting);
+console.log(accounting2);
 
 console.log(Department.createEmployee("Hello"), Department.fiscalYear);
 
