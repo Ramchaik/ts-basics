@@ -65,3 +65,39 @@ function printEmployeeInfo(emp: UnknownEmployee) {
 }
 
 printEmployeeInfo({name: 'Raju', startDate: new Date()})
+
+class Car {
+  drive() {
+    console.log('Driving a car...');
+  }
+}
+
+class Truck {
+  drive() {
+    console.log('Driving a truck...');
+  }
+
+  loadCargo(amount: number) {
+    console.log('Loading cargo...', amount);
+  }
+}
+
+type Vehicle = Car | Truck;
+const v1 = new Car();
+const v2 = new Truck();
+
+function useVehicle(vehicle: Vehicle) {
+  vehicle.drive();
+
+  // * Type guard 
+  // if ('loadCargo' in vehicle) {
+  //   vehicle.loadCargo(100);
+  // }
+  // * Type guard with `instanceof`, Elegant solution for classes
+  if (vehicle instanceof Truck) {
+    vehicle.loadCargo(100);
+  }
+}
+
+useVehicle(v1)
+useVehicle(v2)
