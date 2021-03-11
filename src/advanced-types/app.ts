@@ -28,7 +28,7 @@ interface IEmployee {
 }
 
 // interface inheritance
-interface IElevatedEmployee extends Admin, Employee {};
+interface IElevatedEmployee extends Admin, Employee {}
 const eI: ElevatedEmployee = {
   name: "Vaibhav",
   privileges: ["drop-database"],
@@ -36,49 +36,49 @@ const eI: ElevatedEmployee = {
 };
 
 type Combinable = string | number;
-type Numeric =  number | boolean;
+type Numeric = number | boolean;
 
 type Universal = Combinable & Numeric;
 
 // * Type Guard
-// ** type guard with `typeof` 
+// ** type guard with `typeof`
 function addVals(a: Combinable, b: Combinable) {
-  if (typeof a === 'string' || typeof b === 'string') {
+  if (typeof a === "string" || typeof b === "string") {
     return a.toString() + b.toString();
   }
   return a + b;
 }
 
-// ** type guard with `in` 
+// ** type guard with `in`
 type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInfo(emp: UnknownEmployee) {
   console.log("Name: " + emp.name);
 
-  if ('privileges' in emp) {
+  if ("privileges" in emp) {
     console.log("Privileges: " + emp.privileges);
   }
-  
-  if ('startDate' in emp) {
+
+  if ("startDate" in emp) {
     console.log("Start Date: " + emp.startDate);
   }
 }
 
-printEmployeeInfo({name: 'Raju', startDate: new Date()})
+printEmployeeInfo({ name: "Raju", startDate: new Date() });
 
 class Car {
   drive() {
-    console.log('Driving a car...');
+    console.log("Driving a car...");
   }
 }
 
 class Truck {
   drive() {
-    console.log('Driving a truck...');
+    console.log("Driving a truck...");
   }
 
   loadCargo(amount: number) {
-    console.log('Loading cargo...', amount);
+    console.log("Loading cargo...", amount);
   }
 }
 
@@ -89,7 +89,7 @@ const v2 = new Truck();
 function useVehicle(vehicle: Vehicle) {
   vehicle.drive();
 
-  // * Type guard 
+  // * Type guard
   // if ('loadCargo' in vehicle) {
   //   vehicle.loadCargo(100);
   // }
@@ -99,5 +99,26 @@ function useVehicle(vehicle: Vehicle) {
   }
 }
 
-useVehicle(v1)
-useVehicle(v2)
+useVehicle(v1);
+useVehicle(v2);
+
+// * Discriminated Unions
+
+interface Bird {
+  flyingSpeed: number;
+}
+
+interface Horse {
+  runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+// * `in` is the only solution, you cannot use `instanceof` with interfaces as the object is not mapped to a type
+function moveAnimal(animal: Animal) {
+  if ("runningSpeed" in animal) {
+    console.log("Animal is moving at " + animal);
+  } else if ("flyingSpeed" in animal) {
+    console.log("Animal is moving at " + animal.flyingSpeed);
+  }
+}
