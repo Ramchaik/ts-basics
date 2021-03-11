@@ -132,3 +132,29 @@ function moveAnimal(animal: Animal) {
 
   console.log("Animal is moving at " + speed);
 }
+
+moveAnimal({ type: "horse", runningSpeed: 10 });
+
+// * Type Casting: forcing TS to infer the value's type as the passed type
+
+// * Problem: TS can't infer the type
+// const userInputElement = document.getElementById('user-input')!;
+// userInputElement.value = 'x'; // will throw an error as TS can't infer the type of the element is input
+
+// * Type Casting using `< >`
+const userInputElement = <HTMLInputElement>(
+  document.getElementById("user-input")!
+);
+userInputElement.value = "x";
+
+// * Type Casting using `as`
+const userInputElement2 = document.getElementById(
+  "user-input"
+)! as HTMLInputElement;
+userInputElement2.value = "x";
+
+// * Type casting, where we can have null values
+const userInputElement3 = document.getElementById("user-input");
+if (userInputElement3) {
+  (userInputElement3 as HTMLInputElement).value = "x";
+}
