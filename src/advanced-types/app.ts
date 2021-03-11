@@ -102,13 +102,15 @@ function useVehicle(vehicle: Vehicle) {
 useVehicle(v1);
 useVehicle(v2);
 
-// * Discriminated Unions
+// * Discriminated Unions (pattern)
 
 interface Bird {
+  type: "bird";
   flyingSpeed: number;
 }
 
 interface Horse {
+  type: "horse";
   runningSpeed: number;
 }
 
@@ -116,9 +118,17 @@ type Animal = Bird | Horse;
 
 // * `in` is the only solution, you cannot use `instanceof` with interfaces as the object is not mapped to a type
 function moveAnimal(animal: Animal) {
-  if ("runningSpeed" in animal) {
-    console.log("Animal is moving at " + animal);
-  } else if ("flyingSpeed" in animal) {
-    console.log("Animal is moving at " + animal.flyingSpeed);
+  let speed;
+
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+
+    case "horse":
+      speed = animal.runningSpeed;
+      break;
   }
+
+  console.log("Animal is moving at " + speed);
 }
