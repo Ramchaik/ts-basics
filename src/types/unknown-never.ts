@@ -1,11 +1,11 @@
 let userInput: unknown;
 let userName: string;
 
-someUserInput = 5;
-someUserInput = "Vaibhav";
+userInput = 5;
+userInput = "Vaibhav";
 
-if (typeof someUserInput === "string") {
-  userName = someUserInput;
+if (typeof userInput === "string") {
+  userName = userInput;
 }
 
 function generateError(message: string, code: number): never {
