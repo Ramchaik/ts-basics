@@ -142,19 +142,29 @@ moveAnimal({ type: "horse", runningSpeed: 10 });
 // userInputElement.value = 'x'; // will throw an error as TS can't infer the type of the element is input
 
 // * Type Casting using `< >`
-const userInputElement = <HTMLInputElement>(
-  document.getElementById("user-input")!
-);
-userInputElement.value = "x";
+// const userInputElement = <HTMLInputElement>(
+//   document.getElementById("user-input")!
+// );
+// userInputElement.value = "x";
 
 // * Type Casting using `as`
-const userInputElement2 = document.getElementById(
-  "user-input"
-)! as HTMLInputElement;
-userInputElement2.value = "x";
+// const userInputElement2 = document.getElementById(
+//   "user-input"
+// )! as HTMLInputElement;
+// userInputElement2.value = "x";
 
 // * Type casting, where we can have null values
-const userInputElement3 = document.getElementById("user-input");
-if (userInputElement3) {
-  (userInputElement3 as HTMLInputElement).value = "x";
+// const userInputElement3 = document.getElementById("user-input");
+// if (userInputElement3) {
+//   (userInputElement3 as HTMLInputElement).value = "x";
+// }
+
+// * Index Properties
+interface ErrorContainer {
+  [prop: string]: string; // * don't know the exact property name and also don't know the property count
 }
+
+const errorBag: ErrorContainer = {
+  email: "Not a valid email1",
+  username: "Must start with capital character!",
+};
