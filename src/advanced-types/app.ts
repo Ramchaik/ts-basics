@@ -190,4 +190,12 @@ console.log(fetchedUserData.job && fetchedUserData.job.title);
 // Optional chaining
 console.log(fetchedUserData?.job?.title);
 
+// * Nullish Coalescing
+const someUserInput = '';
+const storedData = someUserInput ?? 'Default'; // * nullish coalescing will only fallback for `undefined` and `null` values of someUserInput
+const otherStoredData = someUserInput || 'x-default' // * short circuit will fallback on any `falsy` value of someUserInput
+console.log(storedData);
+console.log(otherStoredData);
+
+
  
