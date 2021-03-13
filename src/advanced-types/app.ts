@@ -174,3 +174,20 @@ result.split(' ');
 //   email: "Not a valid email1",
 //   username: "Must start with capital character!",
 // };
+
+// * Optional Chaining
+const fetchedUserData = {
+  id: 'u1',
+  name: 'Vaibhav',
+  job: {
+    title: 'CEO',
+    description: 'My own company'
+  }
+}
+
+// JS Old Way
+console.log(fetchedUserData.job && fetchedUserData.job.title);
+// Optional chaining
+console.log(fetchedUserData?.job?.title);
+
+ 
