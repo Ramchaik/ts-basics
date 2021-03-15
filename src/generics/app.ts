@@ -37,3 +37,12 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
 }
 
 console.log(countAndDescribe(['a', 'b']));
+
+// * Adding constraint with `keyof`
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+  return 'Value: ' + obj[key];
+}
+
+// console.log(extractAndConvert({}, 'name')); //! error as property is not on the passed object
+console.log(extractAndConvert({name: 'vaibhav'}, 'name'));
+
