@@ -36,19 +36,21 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
   return [element, description];
 }
 
-console.log(countAndDescribe(['a', 'b']));
+console.log(countAndDescribe(["a", "b"]));
 
 // * Adding constraint with `keyof`
-function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
-  return 'Value: ' + obj[key];
+function extractAndConvert<T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+) {
+  return "Value: " + obj[key];
 }
 
 // console.log(extractAndConvert({}, 'name')); //! error as property is not on the passed object
-console.log(extractAndConvert({name: 'vaibhav'}, 'name'));
-
+console.log(extractAndConvert({ name: "vaibhav" }, "name"));
 
 // * Generic Classes
-class DataStorage<T extends string | number | boolean>{
+class DataStorage<T extends string | number | boolean> {
   private data: T[] = [];
 
   addItem(item: T) {
@@ -73,5 +75,3 @@ numberStorage.addItem(3);
 numberStorage.addItem(1);
 numberStorage.removeItem(1);
 console.log(numberStorage.getItems());
-
-
