@@ -11,11 +11,12 @@
   // data.split(' )
 // });
 
-// * Custom Generics 
-function merge<T, U> (objA: T, objB: U) {
+// * Custom Generics with constraints 
+function merge<T extends object, U extends object> (objA: T, objB: U) {
   return Object.assign(objA, objB);
 }
 
+// const mergeObject = merge({name: 'vaibhav', hobbies: ['A']}, 24); // ! throws error as arguments are now constraint
 const mergeObject = merge({name: 'vaibhav', hobbies: ['A']}, {age: 24});
 console.log(mergeObject);
 
