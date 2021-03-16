@@ -75,3 +75,31 @@ numberStorage.addItem(3);
 numberStorage.addItem(1);
 numberStorage.removeItem(1);
 console.log(numberStorage.getItems());
+
+
+// * Generic Utility Types
+// * - Partial Type
+interface CourseGoal {
+  title: string;
+  description: string;
+  completionUntil: Date;
+}
+
+function createCourseGoal(title: string, description: string, date: Date): CourseGoal {
+  // * one way
+  // return {
+  //   title,
+  //   description,
+  //   completionUntil: date
+  // }
+
+  // * partial way
+  // const courseGoal = {} // * TS will throw error on updation on this object
+  // const courseGoal: CourseGoal = {} // * TS will throw error on creation on this object as it does not follow the interface
+  const courseGoal: Partial<CourseGoal> = {} // * Partial way
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completionUntil = date;
+
+  return courseGoal as CourseGoal; // * need to type cast to CourseGoal as currently it's a partial 
+}
