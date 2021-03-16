@@ -103,3 +103,12 @@ function createCourseGoal(title: string, description: string, date: Date): Cours
 
   return courseGoal as CourseGoal; // * need to type cast to CourseGoal as currently it's a partial 
 }
+
+// * - Readonly Type
+const names = ['Vaibhav', 'Max'];
+names.push("Raju");
+
+const readOnlyNames: Readonly<string[]> = ['Vaibhav', 'Max'];
+// readOnlyNames.push("Raju"); // * throws error as readOnlyNames is of type readonly hence new values can't be added
+// readOnlyNames.pop(); // * throws error as readOnlyNames is of type readonly hence can't alter existing value
+// readOnlyNames[0] = 'x'; // * throws error as readOnlyNames is of type readonly hence can't alter existing value
