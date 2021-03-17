@@ -13,3 +13,23 @@ class Person {
 }
 
 const p = new Person();
+
+console.log(' ---------- ');
+
+
+// * Decorator Factory
+function LoggerFactory(logString: string) {
+  return function(constructor: Function) {
+    console.log(logString);
+    console.log(constructor);
+  }
+}
+
+@LoggerFactory("LOGGING - PERSON")
+class PersonXYZ {
+  constructor() {
+    console.log('Creating a new object');
+    
+  }
+}
+const x = new PersonXYZ();
