@@ -4,7 +4,18 @@ function Logger(constructor: Function) {
   console.log(constructor);
 }
 
-@Logger
+function WithTemplate(template: string, hookId: string) {
+  return function(constructor: any) {
+    const p = new constructor();
+    const hookEl = document.getElementById(hookId);
+    if (hookEl) {
+      hookEl.innerHTML = template;
+      hookEl.querySelector('h1')!.textContent = p.name
+    }
+  }
+}
+
+@WithTemplate('<h1> Hello world </h1>', 'app')
 class Person {
   name = 'vaibhav';
   constructor() {
@@ -12,7 +23,6 @@ class Person {
   }
 }
 
-const p = new Person();
 
 console.log(' ---------- ');
 
