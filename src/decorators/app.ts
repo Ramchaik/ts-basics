@@ -46,3 +46,34 @@ class PersonXYZ {
   }
 }
 const x = new PersonXYZ();
+
+// * Property Decorator
+// * - target will point to the prototype object of instance for instance property and to constructor on static property
+function Log(target: any, propertyName: string) {
+  console.log('Decorator Property');
+  console.log(target, propertyName);
+}
+
+class Product {
+  @Log
+  title: string;
+  private _price: number;
+
+  set price(val: number) {
+    if (val > 0) {
+      this._price = val;
+    } else {
+      throw new Error("Invalid price - Please provide a valid price")
+    }
+  }
+
+  constructor(t: string, p: number) {
+    this.title = t;
+    this._price = p;
+  }
+
+  getPriceWithTax(tax: number): number {
+    return this._price * (1 + tax);
+  }
+
+}
