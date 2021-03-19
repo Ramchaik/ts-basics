@@ -49,7 +49,7 @@ const x = new PersonXYZ();
 
 // * Property Decorator
 // * - target will point to the prototype object of instance for instance property and to constructor on static property
-function Log(target: any, propertyName: string) {
+function Log(target: any, propertyName: string | Symbol) {
   console.log('Decorator Property');
   console.log(target, propertyName);
 }
