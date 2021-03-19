@@ -5,14 +5,21 @@ function Logger(constructor: Function) {
 }
 
 function WithTemplate(template: string, hookId: string) {
-  return function (constructor: any) {
-    console.log("Render template");
-    const p = new constructor();
-    const hookEl = document.getElementById(hookId);
-    if (hookEl) {
-      hookEl.innerHTML = template;
-      hookEl.querySelector("h1")!.textContent = p.name;
-    }
+  return function <T extends { new (...args: any[]): { name: string } }>(
+    originalConstructor: T
+  ) {
+    console.log("Template factory");
+    return class extends originalConstructor {
+      constructor(..._: any[]) {
+        super();
+        console.log("Render template");
+        const hookEl = document.getElementById(hookId);
+        if (hookEl) {
+          hookEl.innerHTML = template;
+          hookEl.querySelector("h1")!.textContent = this.name;
+        }
+      }
+    };
   };
 }
 
@@ -26,6 +33,8 @@ class Person {
     console.log("Creating a new Object");
   }
 }
+
+const p = new Person();
 
 console.log(" ---------- ");
 
