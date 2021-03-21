@@ -146,55 +146,30 @@ button.addEventListener("click", printer.showMessage);
 // ---
 
 interface ValidatorConfig {
-  [property: string]: {
-    [validatableProp: string]: string[]; // ['required', 'positive']
-  };
+  [validatableProp: string]: string[]; // ['required', 'positive']
 }
 
 const registeredValidators: ValidatorConfig = {};
 
-function Required(target: any, propName: string) {
-  registeredValidators[target.constructor.name] = {
-    ...registeredValidators[target.constructor.name],
-    [propName]: [
-      ...registeredValidators[target.constructor.name]![propName]!,
-      "required",
-    ],
-  };
-}
+const addValidator = (propName: string, type: string) => {
+  registeredValidators[propName] = registeredValidators[propName]
+    ? [...registeredValidators[propName]!, type]
+    : [type];
+};
 
-function PositiveNumber(target: any, propName: string) {
-  registeredValidators[target.constructor.name] = {
-    ...registeredValidators[target.constructor.name],
-    [propName]: [
-      ...registeredValidators[target.constructor.name]![propName]!,
-      "positive",
-    ],
-  };
-}
+const Required = (_: any, propName: string) =>
+  addValidator(propName, "required");
+const PositiveNumber = (_: any, propName: string) =>
+  addValidator(propName, "positive");
 
-function validate(obj: any): boolean {
-  const objValidatorsConfig = registeredValidators[obj.constructor.name];
-  if (!objValidatorsConfig) {
-    return true;
-  }
-
-  let isValid = true;
-  for (const prop in objValidatorsConfig) {
-    for (const validator of objValidatorsConfig[prop]!) {
-      switch (validator) {
-        case "required":
-          isValid = isValid && !!obj[prop];
-          break;
-
-        case "positive":
-          isValid = isValid && obj[prop] > 0;
-          break;
-      }
-    }
-  }
-  return isValid;
-}
+const validate = (course: any): boolean =>
+  Object.entries(registeredValidators).every(([propName, types]) =>
+    types.every(
+      (type) =>
+        (type === "required" && course[propName]) ||
+        (type === "positive" && course[propName] > 0)
+    )
+  );
 
 class Course {
   @Required
