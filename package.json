@@ -9,5 +9,9 @@
   },
   "devDependencies": {
     "lite-server": "^2.6.1"
+  },
+  "dependencies": {
+    "class-transformer": "^0.4.0",
+    "reflect-metadata": "^0.1.13"
   }
 }
